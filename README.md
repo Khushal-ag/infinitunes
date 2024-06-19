@@ -29,7 +29,7 @@
 - Fetch latest source code from master branch.
 
 ```
-git clone https://github.com/rajput-hemant/infinitunes
+git clone https://github.com/Khushal-ag/infinitunes
 cd infinitunes
 ```
 
@@ -73,11 +73,11 @@ You can deploy your own hosted version of `infinitunes`. Just click the link bel
 
 ## Star History
 
-<a href="https://star-history.com/#rajput-hemant/infinitunes">
+<a href="https://star-history.com/#Khushal-ag/infinitunes">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=rajput-hemant/infinitunes&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=rajput-hemant/infinitunes" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=rajput-hemant/infinitunes" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Khushal-ag/infinitunes&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Khushal-ag/infinitunes" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Khushal-ag/infinitunes" />
  </picture>
 </a>
 
@@ -100,23 +100,23 @@ _Note: It may take up to 24h for the [contrib.rocks][contrib-rocks] plugin to up
 <!----------------------------------{ Labels }--------------------------------->
 
 [views]: https://komarev.com/ghpvc/?username=infinitunes&label=view%20counter&color=red&style=flat
-[repo-size]: https://img.shields.io/github/repo-size/rajput-hemant/infinitunes
-[issues]: https://img.shields.io/github/issues-raw/rajput-hemant/infinitunes
-[license]: https://img.shields.io/github/license/rajput-hemant/infinitunes
-[forks]: https://img.shields.io/github/forks/rajput-hemant/infinitunes?style=flat
-[stars]: https://img.shields.io/github/stars/rajput-hemant/infinitunes
-[contributors]: https://contrib.rocks/image?repo=rajput-hemant/infinitunes&max=500
-[contributors-graph]: https://github.com/rajput-hemant/infinitunes/graphs/contributors
-[contrib-rocks]: https://contrib.rocks/preview?repo=rajput-hemant%2Finfinitunes
-[ci]: https://github.com/rajput-hemant/infinitunes/actions/workflows/ci.yml/badge.svg
+[repo-size]: https://img.shields.io/github/repo-size/Khushal-ag/infinitunes
+[issues]: https://img.shields.io/github/issues-raw/Khushal-ag/infinitunes
+[license]: https://img.shields.io/github/license/Khushal-ag/infinitunes
+[forks]: https://img.shields.io/github/forks/Khushal-ag/infinitunes?style=flat
+[stars]: https://img.shields.io/github/stars/Khushal-ag/infinitunes
+[contributors]: https://contrib.rocks/image?repo=Khushal-ag/infinitunes&max=500
+[contributors-graph]: https://github.com/Khushal-ag/infinitunes/graphs/contributors
+[contrib-rocks]: https://contrib.rocks/preview?repo=Khushal-ag%2Finfinitunes
+[ci]: https://github.com/Khushal-ag/infinitunes/actions/workflows/ci.yml/badge.svg
 
 <!-----------------------------------{ Links }---------------------------------->
 
 [site]: https://infinitunes.vercel.app
-[deploy]: https://vercel.com/new/clone?repository-url=https://github.com/rajput-hemant/infinitunes&env=NEXT_PUBLIC_APP_URL,NEXTAUTH_URL,NEXTAUTH_SECRET,JIOSAAVN_API_URL,NEXT_PUBLIC_JIOSAAVN_API_URL,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,GITHUB_CLIENT_ID,GITHUB_CLIENT_SECRET,DATABASE_URL&project-name=infinitunes&repo-name=infinitunes
+[deploy]: https://vercel.com/new/clone?repository-url=https://github.com/Khushal-ag/infinitunes&env=NEXT_PUBLIC_APP_URL,NEXTAUTH_URL,NEXTAUTH_SECRET,JIOSAAVN_API_URL,NEXT_PUBLIC_JIOSAAVN_API_URL,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,GITHUB_CLIENT_ID,GITHUB_CLIENT_SECRET,DATABASE_URL&project-name=infinitunes&repo-name=infinitunes
 
 <!------------------------------------{ api }----------------------------------->
 
 [api]: https://github.com/rajput-hemant/jiosaavn-api-ts
 [api-docs]: https://docs-jiosaavn.netlify.app/
-[cc]: https://github.com/rajput-hemant
+[cc]: https://github.com/Khushal-ag

@@ -1,6 +1,6 @@
 import React from "react";
 import { usePathname } from "next/navigation";
-import { Clipboard, Facebook, Mail, Twitter } from "lucide-react";
+import { Clipboard, Facebook, Mail } from "lucide-react";
 
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
@@ -24,27 +24,27 @@ const shareOptions: ShareOption[] = [
   },
   {
     label: "WhatsApp",
-    href: "https://github.com/rajput-hemant/infinitunes",
+    href: "https://github.com/Khushal-ag/infinitunes",
     icon: ({ className }) => <Icons.WhatsApp className={className} />,
   },
   {
     label: "Telegram",
-    href: "https://github.com/rajput-hemant/infinitunes",
+    href: "https://github.com/Khushal-ag/infinitunes",
     icon: ({ className }) => <Icons.Telegram className={className} />,
   },
   {
     label: "Twitter",
-    href: "https://github.com/rajput-hemant/infinitunes",
-    icon: ({ className }) => <Twitter className={className} />,
+    href: "https://github.com/Khushal-ag/infinitunes",
+    icon: ({ className }) => <Icons.X className={className} />,
   },
   {
     label: "Facebook",
-    href: "https://github.com/rajput-hemant/infinitunes",
+    href: "https://github.com/Khushal-ag/infinitunes",
     icon: ({ className }) => <Facebook className={className} />,
   },
   {
     label: "Email",
-    href: "https://github.com/rajput-hemant/infinitunes",
+    href: "https://github.com/Khushal-ag/infinitunes",
     icon: ({ className }) => <Mail className={className} />,
   },
 ];
