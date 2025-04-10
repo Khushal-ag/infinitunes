@@ -40,12 +40,12 @@ async function jioSaavnGetCall<T>(
   path: string,
   query?: Record<string, string>
 ): Promise<T> {
-  const cookiesStore = cookies(); // this will trigger dynamic rendering
+  const cookiesStore = await cookies(); // this will trigger dynamic rendering
   const languages = cookiesStore.get("language")?.value;
 
   const queries = {
     ...query,
-    lang: query && query["lang"] ? query.lang : languages ?? "hindi",
+    lang: query && query["lang"] ? query.lang : (languages ?? "hindi"),
   };
 
   const url = new URL(path, env.JIOSAAVN_API_URL);

@@ -39,7 +39,7 @@ import { Icons } from "./icons";
 import { ImageWithFallback } from "./image-with-fallback";
 import { Queue } from "./queue";
 import { TileMoreButton } from "./song-list/more-button";
-import { buttonVariants } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
 import { Skeleton } from "./ui/skeleton";
 import { Slider, SliderRange, SliderThumb, SliderTrack } from "./ui/slider";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
@@ -58,11 +58,13 @@ export function Player({ user, playlists }: PlayerProps) {
   const [isPlayerInit, setIsPlayerInit] = useIsPlayerInit();
   const [isTyping] = useIsTyping();
   // refs
-  const frameRef = React.useRef<number>();
+  const frameRef = React.useRef<number>(0);
   // states
   const [isShuffle, setIsShuffle] = React.useState(false);
   const [loopPlaylist, setLoopPlaylist] = React.useState(false);
   const [pos, setPos] = React.useState(0);
+  const [isDragging, setIsDragging] = React.useState<boolean>(false);
+
   // third party hooks
   const {
     load,
@@ -99,6 +101,10 @@ export function Player({ user, playlists }: PlayerProps) {
   }, [queue, streamQuality, currentIndex, isPlayerInit]); // eslint-disable-line react-hooks/exhaustive-deps
 
   React.useEffect(() => {
+    if (isDragging) {
+      return;
+    }
+
     const animate = () => {
       setPos(getPosition());
       frameRef.current = requestAnimationFrame(animate);
@@ -111,7 +117,7 @@ export function Player({ user, playlists }: PlayerProps) {
         cancelAnimationFrame(frameRef.current);
       }
     };
-  }, [getPosition]);
+  }, [getPosition, isDragging]);
 
   function loopHandler() {
     if (!isReady) return;
@@ -236,15 +242,22 @@ export function Player({ user, playlists }: PlayerProps) {
         value={[pos]}
         max={duration}
         onValueChange={([values]) => {
-          seek(values);
           setPos(values);
+        }}
+        onPointerDown={() => {
+          setIsDragging(true);
+        }}
+        onValueCommit={() => {
+          seek(pos);
+          setPos(getPosition());
+          setIsDragging(false);
         }}
       >
         <SliderTrack className="h-1 cursor-pointer">
           <SliderRange />
         </SliderTrack>
 
-        <SliderThumb className="hidden size-4 cursor-pointer lg:block" />
+        <SliderThumb className="block size-4 cursor-pointer" />
       </Slider>
 
       <div
@@ -390,11 +403,20 @@ export function Player({ user, playlists }: PlayerProps) {
           <div className="hidden items-center gap-4 xl:flex">
             <button
               aria-label={muted ? "Unmute" : "Mute"}
-              disabled={!isReady || muted}
-              onClick={() => mute(!muted)}
-              className="disabled:text-muted-foreground"
+              onClick={() => {
+                if (!isReady) return;
+                const newMuted = !muted;
+                mute(newMuted);
+                if (!newMuted && volume === 0) {
+                  setVolume(0.75); // Reset to 75% if unmuting from 0
+                }
+              }}
+              className={cn(
+                "transition-opacity hover:opacity-100",
+                (!isReady || muted) && "text-muted-foreground opacity-50"
+              )}
             >
-              {muted ?
+              {muted || volume === 0 ?
                 <VolumeX />
               : volume < 0.33 ?
                 <Volume />
@@ -405,13 +427,26 @@ export function Player({ user, playlists }: PlayerProps) {
 
             <Slider
               aria-label="Volume"
-              disabled={!isReady || muted}
-              value={[volume * 100]}
+              value={[muted ? 0 : volume * 100]}
               defaultValue={[75]}
-              onValueChange={([volume]) => {
-                setVolume(volume / 100);
+              min={0}
+              max={100}
+              step={1}
+              onValueChange={([value]) => {
+                if (!isReady) return;
+                const newVolume = value / 100;
+                setVolume(newVolume);
+                if (newVolume > 0 && muted) {
+                  mute(false);
+                }
+                if (newVolume === 0 && !muted) {
+                  mute(true);
+                }
               }}
-              className="w-44"
+              className={cn(
+                "w-44 transition-opacity hover:opacity-100",
+                !isReady && "opacity-50"
+              )}
             >
               <SliderTrack className="h-1 cursor-pointer">
                 <SliderRange
@@ -429,7 +464,7 @@ export function Player({ user, playlists }: PlayerProps) {
             </Slider>
 
             <span className="w-8 text-sm font-medium">
-              {(volume * 100).toFixed()}%
+              {muted ? "0" : Math.round(volume * 100)}%
             </span>
           </div>
 
@@ -447,7 +482,10 @@ export function Player({ user, playlists }: PlayerProps) {
                   variant: "ghost",
                 })}
               />
-            : <MoreVertical />}
+            : <Button size="icon" variant="ghost">
+                <MoreVertical />
+              </Button>
+            }
           </div>
         </div>
       </div>

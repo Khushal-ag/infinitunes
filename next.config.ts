@@ -1,14 +1,12 @@
-import createJiti from "jiti";
+import type { NextConfig } from "next";
 
 // This is validation for the environment variables early in the build process.
-const jiti = createJiti(new URL(import.meta.url).pathname);
-jiti("./src/lib/env");
+import "./src/lib/env";
 
 const isProd = process.env.NODE_ENV === "production";
 const isDocker = process.env.IS_DOCKER === "true";
 
-/** @type {import("next").NextConfig} */
-const config = {
+const config: NextConfig = {
   reactStrictMode: true,
   images: {
     remotePatterns: [
@@ -25,7 +23,7 @@ const config = {
   },
   experimental: {
     ppr: true,
-    reactCompiler: isProd,
+    reactCompiler: isProd ? true : undefined,
     // ...
   },
   output: isDocker ? "standalone" : undefined,

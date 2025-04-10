@@ -1,5 +1,5 @@
 # 1. Install dependencies only when needed
-FROM oven/bun:1 AS deps
+FROM oven/bun:latest AS deps
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
@@ -7,7 +7,7 @@ COPY package.json bun.lockb ./
 RUN bun install --frozen-lockfile
 
 # 2. Rebuild the source code only when needed
-FROM node:20.14.0-alpine AS base
+FROM node:22.11.0-alpine AS base
 
 FROM base AS builder
 WORKDIR /app
@@ -36,7 +36,6 @@ COPY --from=builder /app/public ./public
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
 
 USER nextjs
 
